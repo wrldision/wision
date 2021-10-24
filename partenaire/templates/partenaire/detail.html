@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+Page du Partenaire {{object.titre}}
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            {{object.nom_organisation}}
+            {{object.description}}
+            {{object.logo_partenaire}}
+            {{object.email1}}
+            {{object.email2}}
+            {{object.tel1}}
+            {{object.tel2}}
+            <!-- <a href=#><button class="btn-sm btn-success">Postuler</button></a> -->
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+<br>
+
+{% endblock content %}

@@ -10,57 +10,36 @@
 <form action="" method ="POST">
     {% csrf_token %}
     <div class="row">
-      <div class="col-6">
-        {{ form.nom|as_crispy_field }}
-      </div>
-      <div class="col-6">
-        {{ form.prenom|as_crispy_field }}
+      <div class="col-12">
+        {{ form.nom_organisation|as_crispy_field }}
       </div>
     </div>
     <div class="row mt-3">
       <div class="col-6">
-        {{ form.tel|as_crispy_field }}
+        {{ form.logo_partenaire|as_crispy_field }}
       </div>
       <div class="col-6">
-        {{ form.email|as_crispy_field }}
+        {{ form.description|as_crispy_field }}
       </div>
     </div>
     <div class="row mt-3 mb-3">
       <div class="col-6">
-        {{ form.dernier_diplome|as_crispy_field }}
+        {{ form.email1|as_crispy_field }}
       </div>
       <div class="col-6">
-        {{ form.date_naissance|as_crispy_field }}
+        {{ form.email2|as_crispy_field }}
       </div>
     </div>
-    <div class="row mt-3 mb-4">
-        <div class="col-12"> 
-            <div class="row">
-                <div class="col-6">
-                    {{ form.photoDeProfil|as_crispy_field }}
-                </div>
-                <div class="col-6">
-                    {{ form.cv|as_crispy_field }}
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-6">
-                    {{ form.cni|as_crispy_field }}
-                </div>
-                <div class="col-6">
-                    {{ form.dernier_diplomeScan|as_crispy_field }}
-                </div>
-            </div>  
+    <div class="row mt-3 mb-3">
+        <div class="col-6">
+          {{ form.tel1|as_crispy_field }}
         </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        {{ form.presentation|as_crispy_field }}
+        <div class="col-6">
+          {{ form.tel1|as_crispy_field }}
+        </div>
       </div>
-    </div>
-    <small class="mt-4">²Format de fichier supporter: <em>.png, jpg, jpeg, .gif, .pdf, .docx, .odt, etc...</em></small>
     <br>
-    <button type="submit" class="btn btn-success mt-3">Soumettre </button>
+    <button type="submit" class="btn btn-success mt-3">Ajouter</button>
 </form>
 
 {% endblock content %}

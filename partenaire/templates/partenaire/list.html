@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}
+
+Tous les Partenaires
+{% endblock title %}
+
+{% block content %}
+Tous les Partenaires<br>
+<div class="container-fluid">
+    <div class="row">
+{% for objet in object_list  %}
+        {% if objet.is_validate == "yes"%}
+            <div class="col-4">
+                <img src= {{objet.logo_partenaire}} alt="Logo de {{objet.nom_organisation}} ">
+                {{objet.nom_organisation}} 
+                {{objet.description}}
+                {{objet.email1}}
+                {{objet.email2}}
+                {{objet.tel1}}
+                {{objet.tel2}}
+                <a href={% url 'partenaire:detail' objet.pk %}><button class="btn-sm btn-success">Voir +</button></a>
+            </div>
+        {% endif %}
+{% endfor %}
+        </div>
+    </div>
+{% endblock content %}

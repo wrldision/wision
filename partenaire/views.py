@@ -5,19 +5,11 @@ from .forms import PartenaireForm
 # Create your views here.
 
 def home_view(request):
-    # if request.method == 'POST': #If Search zone
-    #     mots_cles = request.POST.get('mots_cles')
-    #     lieu = request.POST.get('lieu')
-    #     activite = request.POST.get('activite')
-    #     print(mots_cles, lieu, activite)
-
     PartenaireQueryAll = Partenaire.objects.all().order_by('-created_at')[:9] #.order_by() du plus récent au moins récent.
-
-
     context = {
 
     }
-    return render(request, 'partenaire/home.html', context)
+    return render(request, 'besoin/home.html', context)
 
 
 
