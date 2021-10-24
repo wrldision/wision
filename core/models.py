@@ -5,6 +5,7 @@ from django.db.models.fields.files import ImageField
 from django.views.generic import detail
 from phonenumber_field.modelfields import PhoneNumberField
 from django.db.models.deletion import CASCADE
+from gerant.models import Gerant
 from enum import Enum
 from .utils import autogenref
 from django.utils import timezone
@@ -48,6 +49,8 @@ class Besoin(models.Model):
     description = models.TextField(default="Aucune Description")
     type = models.CharField(max_length=40, choices=[(idx.name, idx.value) for idx in TypeBesoin.all()])
     image_mise_en_avant = models.ImageField(upload_to ='besoin', default = 'ibsnoimage.png' )
+
+    gerant = models.ForeignKey(Gerant, on_delete=models.CASCADE, blank=True, null=True)
 
     created_at = models.DateField(auto_now_add=True)
     update_at = models.DateField(auto_now= True)
