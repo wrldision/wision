@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+Page du Besoin {{object.titre}}
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <img src="{{object.image_mise_en_avant.url}}" alt="image de {{object.titre}} ">
+            <hr>
+            Titre: {{object.titre}}
+            <hr>
+            Resume: {{object.resume}}
+            <hr>
+            {{object.description}}
+            <!-- <a href=#><button class="btn-sm btn-success">Postuler</button></a> -->
+            <div class="row mt-3">
+                <div class="col-1 pt-2">
+                    <a href="">
+                        <button  class="btn btn-primary">Donnez</button>
+                    </a>
+                </div>
+                <div class="col-11"></div>
+            </div>
+            
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+<br>
+
+{% endblock content %}

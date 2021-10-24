@@ -4,12 +4,13 @@ from .models import Partenaire
 from .forms import PartenaireForm
 # Create your views here.
 
-def home_view(request):
-    PartenaireQueryAll = Partenaire.objects.all().order_by('-created_at')[:9] #.order_by() du plus récent au moins récent.
-    context = {
-
-    }
-    return render(request, 'besoin/home.html', context)
+# def home_view(request):
+#     PartenaireQueryAll = Partenaire.objects.all().order_by('-created_at')[:9] #.order_by() du plus récent au moins récent.
+#     context = {
+#         "PartenaireQueryAll": PartenaireQueryAll
+#     }
+#     message = "hello"
+#     return render(request, 'core/partner.html',{"PartenaireQueryAll": PartenaireQueryAll})
 
 
 

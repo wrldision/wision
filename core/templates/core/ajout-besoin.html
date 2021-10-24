@@ -2,7 +2,7 @@
 {% load static %}
 {% load tz%}
 {% load crispy_forms_tags %}
-{%block title %} Ajout Partenaire {% endblock title%}
+{%block title %} Ajout d'un Besoin {% endblock title%}
 
 
 {% block content %}
@@ -12,37 +12,29 @@
     <div class="space-2 bg-light">
         <div class="container">
             <div class="row mb-5 text-center text-uppercase">
-                <h1>Ajout d'un Partenaire</h1>
+                <h1>Ajout d'un Besoin</h1>
             </div>
            <div class="row d-flex">
               <form action="" method ="POST">
                 {% csrf_token %}
                 <div class="row">
                   <div class="col-12">
-                    {{ form.nom_organisation|as_crispy_field }}
+                    {{ form.titre|as_crispy_field }}
                   </div>
                 </div>
                 <div class="row mt-3">
                   <div class="col-12">
-                    {{ form.logo_partenaire|as_crispy_field }}
+                    {{ form.resume|as_crispy_field }}
                   </div>
                 </div>
                 <div class="row mt-3 mb-3">
                   <div class="col-6">
-                    {{ form.email1|as_crispy_field }}
+                    {{ form.image_mise_en_avant|as_crispy_field }}
                   </div>
                   <div class="col-6">
-                    {{ form.email2|as_crispy_field }}
+                    {{ form.type|as_crispy_field }}
                   </div>
                 </div>
-                <div class="row mt-3 mb-3">
-                    <div class="col-6">
-                      {{ form.tel1|as_crispy_field }}
-                    </div>
-                    <div class="col-6">
-                      {{ form.tel1|as_crispy_field }}
-                    </div>
-                  </div>
                 <div class="row mt-3">
                   <div class="col-12">
                     {{ form.description|as_crispy_field }}

@@ -1,34 +1,29 @@
 {% extends "base.html" %}
-{% load static %}
-{% load tz%}
-{% load crispy_forms_tags %}
-{%block title %} Acceuil - Bienvenue sur {% endblock title%}
+{%load static%}
+{% block title %}
 
-{% block scripts %}
-    <script src="{% static 'core/home.js' %}" defer></script>
-{% endblock scripts %}
-<!-- Accueil du site -->
+Découvir tous les Besoins
+{% endblock title %}
 
 {% block content %}
 
 <!-- Section des Besoins -->
 
-{% if BesoinQueryLatest %}
 <div class="container-fluid">
     <div class="row">
       <div class="space-2 bg-light">
           <div class="container">
               <div class="row mb-5 text-center text-uppercase">
-                  <h2>Derniers Besoins inscrit</h2>
+                  <h1>Découvir tous les Besoins</h1>
               </div>
              <div class="row d-flex">
-                {% for besoin in BesoinQueryLatest %}
+                {% for besoin in object_list %}
                     <div class="col-lg-4 col-md-6 col-sm-6">
                     <!-- Card -->
                     <div class="card border-0 shadow">
                         <!-- Card image -->
                         <div class="view ">
-                            <img class="card-img-top rounded-top" src="{{besoin.image_mise_en_avant.url}}" width="347px" height="231px" alt="Card image cap">
+                            <img class="card-img-top rounded-top" src="{% static 'images/img-bg.jpg' %}" width="347px" height="231px" alt="Card image cap">
                             <a href="#!">
                                 <div class="mask rgba-white-slight"></div>
                             </a>
@@ -69,65 +64,5 @@
        </div>
     </div>
 </div>
-{% else %}
-   <h3 class="text-center">Oups, Aucun Besoin à afficher pour le moment...</h3>
-{% endif %}
-
-
-
-<!-- Section des Partenaire -->
-{% if  PartenaireQueryLatest%}
-<div class="row">
-<div class="space-2 bg-light">
-        <div class="container">
-            <div class="row mb-5 text-center text-uppercase">
-                <h2>Derniers Partenaires inscrit</h2>
-            </div>
-            <div class="row d-flex">
-                {% for partner in  PartenaireQueryLatest %}
-                    <div class="col-lg-3 col-md-4 col-sm-4">
-                        <!-- Partner image -->
-                        <div class="view ">
-                            <a href={% url 'partenaire:detail' partner.pk %}>
-                                <img class="imgpartner" src="{{ partner.logo_partenaire.url }}" alt="Logo de {{partner.nom_organisation}}">
-                                <p class="pt-2">{{partner.nom_organisation.upper}}</p>
-                            </a>
-                        </div>
-                    </div>
-                {% endfor %}
-        </div>
-    </div>
-</div>
-</div>
-{% else %}
-<h3>Oups, Aucun partner à afficher pour le moment...</h3>
-{% endif %}
-
-
-<!-- Section des Donateurs -->
-{% if DonQueryLatest %}
-<div class="row">
-    <div class="space-2 bg-light">
-        <div class="container">
-            <div class="row mb-5 text-left text-uppercase">
-                <h4 class="">Donateurs</h4>
-            </div>
-            <div class="row d-flex">
-
-            {% for don in DonQueryLatest %}
-                <div class="col-4 mt-4 cbox">
-                    {{don.ref}}
-                    {{don.type}}
-                    {{don.montant}}
-                </div>
-            {% endfor %}
-
-        </div>
-    </div>
-</div>
-</div>
-{% else %}
-   <h3>Oups, Aucun Dons à afficher pour le moment...</h3>
-{% endif %}
 
 {% endblock content %}

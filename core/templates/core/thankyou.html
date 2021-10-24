@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{%load static%}
+{% block title %}
+
+Remerciements
+{% endblock title %}
+
+{% block content %}
+
+<!-- Section des Besoins -->
+
+<div class="container-fluid">
+    <div class="row">
+      <div class="space-2 bg-light">
+          <div class="container">
+              <div class="row mb-5 text-center text-uppercase">
+                  <!-- 
+                <div class="col-12 align-center mb-5">
+                    <img class="imgpartner" src="{% static 'images/thankyou.jpg' %}" alt="" height="300px" width="300px">
+                </div> 
+                    -->
+                  <h1>Nous vous remercions pour votre Dons</h1>
+              </div>
+             <div class="row d-flex">
+                <p class="text-center">Cliquez sur cet <a href="{% url 'core:home' %}">lien</a>  pour retouner à l'acceuil</p>
+                <!-- end col -->
+             </div>
+          </div>
+       </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -14,5 +14,5 @@ class BesoinForm(forms.ModelForm):
     class Meta:
         model = Besoin
         fields = [
-            'type','titre','resume','description',
+            'type','titre','resume','description','image_mise_en_avant',
         ]
