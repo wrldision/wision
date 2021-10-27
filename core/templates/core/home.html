@@ -19,7 +19,7 @@
       <div class="space-2 bg-light">
           <div class="container">
               <div class="row mb-5 text-center text-uppercase">
-                  <h2>Derniers Besoins inscrit</h2>
+                  <h2>Derniers Besoins inscrits</h2>
               </div>
              <div class="row d-flex">
                 {% for besoin in BesoinQueryLatest %}
@@ -75,13 +75,15 @@
 
 
 
+
+
 <!-- Section des Partenaire -->
 {% if  PartenaireQueryLatest%}
 <div class="row">
 <div class="space-2 bg-light">
         <div class="container">
             <div class="row mb-5 text-center text-uppercase">
-                <h2>Derniers Partenaires inscrit</h2>
+                <h2>Derniers  Partenaires  inscrits </h2>
             </div>
             <div class="row d-flex">
                 {% for partner in  PartenaireQueryLatest %}
@@ -110,15 +112,16 @@
     <div class="space-2 bg-light">
         <div class="container">
             <div class="row mb-5 text-left text-uppercase">
-                <h4 class="">Donateurs</h4>
+                <h4 class="">Derniers Donateurs</h4>
             </div>
             <div class="row d-flex">
 
             {% for don in DonQueryLatest %}
                 <div class="col-4 mt-4 cbox">
-                    {{don.ref}}
-                    {{don.type}}
-                    {{don.montant}}
+                    <p>Un donateur à donner {{don.montant}} $  </p>
+                    <small>Ref: <em>{{don.ref.upper}})</em></small>
+                    <small>Type: <strong>{{don.get_type_display}}</strong></small>
+                    
                 </div>
             {% endfor %}
 
@@ -129,5 +132,40 @@
 {% else %}
    <h3>Oups, Aucun Dons à afficher pour le moment...</h3>
 {% endif %}
+
+
+
+ <!-- section CTA -->
+
+ <section class="join-us mb-5">
+    <div class="container">
+        <div class="row mb-5 text-center text-uppercase">
+            <h2>Rejoignez-Nous</h2>
+        </div>
+        <div class="join-cards">
+            <div class="join-card">
+                <h5 class="mb-3">Devenir <br>un donateur</h5>
+                <p>
+                    This challenge has three specific areas, This challenge has three specific areas. This challenge has three specific areas, This challenge has three specific areas.
+                </p>
+                <a href="#" class="btn btn-primary">Je m'engage</a>
+            </div>
+            <div class="join-card">
+                <h5 class="mb-3">Devenir <br>un partenaire</h5>
+                <p>
+                    This challenge has three specific areas, This challenge has three specific areas. This challenge has three specific areas, This challenge has three specific areas.
+                </p>
+                <a href="#" class="btn btn-primary">Je m'engage</a>
+            </div>
+            <div class="join-card">
+                <h5 class="mb-3">Faire <br>du bénévolat</h5>
+                <p>
+                    This challenge has three specific areas, This challenge has three specific areas. This challenge has three specific areas, This challenge has three specific areas.
+                </p>
+                <a href="#" class="btn btn-primary">Je m'engage</a>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock content %}

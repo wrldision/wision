@@ -6,6 +6,7 @@ from django.views.generic import detail
 from phonenumber_field.modelfields import PhoneNumberField
 from django.db.models.deletion import CASCADE
 from gerant.models import Gerant
+from donateur.models import Donateur
 from enum import Enum
 from .utils import autogenref
 from django.utils import timezone
@@ -30,10 +31,12 @@ class Don(models.Model):
     montant = models.IntegerField(help_text="Valeur en Dollars Americain(1 USD = 560FCA)")
     detail =  models.TextField(default="Aucun Detail")
 
+    donateur = models.ForeignKey(Donateur, on_delete=models.CASCADE, blank=True, null=True)
+
     created_at = models.DateField(auto_now_add=True)
     update_at = models.DateField(auto_now= True)
     def __str__(self):
-        return f"{self.montant} $ à été donné par une pers, ref = {self.ref.capitalize()}"
+        return f" Une personne à donnée : {self.montant} $(ref = {self.ref.capitalize()})"
 
     def save(self, *args, **kwargs):
         if self.ref == "":
@@ -41,6 +44,10 @@ class Don(models.Model):
         if self.created_at is None:
             self.created_at = timezone.now
         return super().save(*args, **kwargs)
+    
+    def get_user_from_id(self):# Reverse relationship
+        obj_user = self.donateur_set.first() # Cette method retourne id de vente a partir de  la class Achat()
+        return obj_user
 
 
 class Besoin(models.Model):

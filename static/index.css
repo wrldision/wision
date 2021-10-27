@@ -480,7 +480,7 @@ nav {
 @media (min-width: 800px) {
 
     header {
-        background-image: url("images/img-bg.jpg");
+        background-image: url("images/img.jpeg");
         height: 33vw;
         background-repeat: no-repeat;
     }

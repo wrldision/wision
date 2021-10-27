@@ -5,22 +5,47 @@ Page du Partenaire {{object.titre}}
 {% endblock title %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
-            {{object.nom_organisation}}
-            {{object.description}}
-            {{object.logo_partenaire}}
-            {{object.email1}}
-            {{object.email2}}
-            {{object.tel1}}
-            {{object.tel2}}
-            <!-- <a href=#><button class="btn-sm btn-success">Postuler</button></a> -->
+
+<section class="details">
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="partner-logo">
+                    <img src="{{object.logo_partenaire.url}}" alt="partner logo" height="200px" width="200px">
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="details-text">
+                    <div>
+                        <h5>Nom du Partenaire</h5>
+                        <p>{{object.nom_organisation}}</p>
+                    </div>
+                    <br>
+                    <div>
+                        <h5>Description</h5>
+                        <p>{{object.description}}</p>
+                    </div>
+                    <div class="row mb-1">
+                        <h5>Emails</h5>
+                        <div class="col-6">Email1: {{object.email1}}</div>
+                        {%if object.email2 != ""%}
+                            <div class="col-6">Email2: {{object.email2}}</div>
+                        {%endif%}
+                    </div>
+                    
+                    <div class="row mt-2 mb-3">
+                        <h5>Telephone</h5>
+                        <div class="col-6">Tel1: {{object.tel1}}</div>
+                        {%if object.tel2 != "" %}
+                            <div class="col-6">Tel2: {{object.tel2}}</div>
+                        {%endif%}
+                    </div>
+                    
+                </div>
+            </div>
         </div>
-        <div class="col-2"></div>
     </div>
-</div>
-<br>
+</section>
+
 
 {% endblock content %}

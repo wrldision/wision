@@ -12,7 +12,7 @@ def home_view(request):
     DonQueryLatest = None
 
     BesoinQueryLatest = Besoin.objects.all().order_by('-created_at')[:3] #Les 09 Derniers Besoins
-    DonQueryLatest = Don.objects.all().order_by('-created_at')[:9] #Les 09 Derniers Dons
+    DonQueryLatest = Don.objects.all().order_by('-created_at')[:6] #Les 09 Derniers Dons
     PartenaireQueryLatest = Partenaire.objects.all().order_by('-created_at')[:4] #Les 09 Derniers Besoins
     print(PartenaireQueryLatest)
     print(BesoinQueryLatest)

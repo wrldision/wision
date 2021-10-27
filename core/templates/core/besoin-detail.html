@@ -1,35 +1,52 @@
 {% extends "base.html" %}
+{%load static%}
 
 {% block title %}
 Page du Besoin {{object.titre}}
 {% endblock title %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
-            <img src="{{object.image_mise_en_avant.url}}" alt="image de {{object.titre}} ">
-            <hr>
-            Titre: {{object.titre}}
-            <hr>
-            Resume: {{object.resume}}
-            <hr>
-            {{object.description}}
-            <!-- <a href=#><button class="btn-sm btn-success">Postuler</button></a> -->
-            <div class="row mt-3">
-                <div class="col-1 pt-2">
-                    <a href="">
-                        <button  class="btn btn-primary">Donnez</button>
-                    </a>
-                </div>
-                <div class="col-11"></div>
-            </div>
-            
-        </div>
-        <div class="col-2"></div>
+
+
+<div class="title-section mb-5">
+    <div class="title-image">
+        <img src="{{object.image_mise_en_avant.url}}" alt="title image">
+    </div>
+    <div class="title-text text-center p-5">
+        <h1>{{object.titre}}</h1>
     </div>
 </div>
-<br>
+
+<section class="details">
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="partner-logo">
+                    <img src="{% static 'images/partner-logo.png' %}" alt="partner logo" height="200px" width="200px">
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="details-text">
+                    <div>
+                        <h5>Résumé</h5>
+                        <p>{{object.resume}}</p>
+                    </div>
+                    <br>
+                    <div>
+                        <h5>Description</h5>
+                        <p>{{object.description}}</p>
+                    </div>
+                    <!-- Button trigger modal -->
+                    <a href="{% url 'core:ajouter_don' %}">
+                        <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Donner
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 {% endblock content %}
