@@ -11,15 +11,19 @@ def home_view(request):
     BesoinQueryLatest = None
     DonQueryLatest = None
 
-    BesoinQueryLatest = Besoin.objects.all().order_by('-created_at')[:3] #Les 09 Derniers Besoins
-    DonQueryLatest = Don.objects.all().order_by('-created_at')[:6] #Les 09 Derniers Dons
-    PartenaireQueryLatest = Partenaire.objects.all().order_by('-created_at')[:4] #Les 09 Derniers Besoins
-    print(PartenaireQueryLatest)
-    print(BesoinQueryLatest)
+    BesoinQueryLatest = Besoin.objects.all().order_by('-created_at')[:3] #Les 03 Derniers Besoins
+    DonQueryLatest = Don.objects.all().order_by('-created_at')[:6] #Les 06 Derniers Dons
+    PartenaireQueryLatest = Partenaire.objects.all().order_by('-created_at')[:4] #Les 04 Derniers Besoins
+
+    # Nombre de personne ayant visiter la page d'acceuil
+    nbr_visiteurs = request.session.get('nbr_visiteurs', 0)
+    request.session['nbr_visiteurs'] = nbr_visiteurs + 1
+
     context = {
         'BesoinQueryLatest':BesoinQueryLatest,
         'DonQueryLatest':DonQueryLatest,
         'PartenaireQueryLatest':PartenaireQueryLatest,
+        'nbr_visiteurs': nbr_visiteurs, #ToDo
         #'':,
     }
     return render(request, 'core/home.html', context)

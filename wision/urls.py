@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('p/', include('partenaire.urls', namespace='partenaire')),
     path('', include('core.urls', namespace='Core')),
+    path('dashboard/', include('dashboard.urls', namespace='Dashboard')),
 ]
 
 urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
