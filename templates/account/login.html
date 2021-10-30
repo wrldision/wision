@@ -1,0 +1,135 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% block head_links %} 
+
+<title>Sign In</title>
+
+{% endblock %}
+
+{% block head_title %}{% trans "Sign In" %} {% endblock %}
+
+{% block content %}
+{% comment %} <div class="container-fluid">
+
+ {% block messages %}
+    {% if messages %}
+    <div>
+        <ul>
+        {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>{{message}}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+  {% endblock %}
+
+<h3 class="h3" id="head_banner">{% trans "Sign In" %}</h3>
+
+<form class="container-fluid text-center" id="login_form" method="POST" action="{% url 'account_login' %}">
+  {% csrf_token %}
+  
+  {{ form.as_p }}
+
+  {% if redirect_field_value %}
+  
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  
+  {% endif %}
+  
+  <button  class="btn btn-outline-primary " type="submit">{% trans "Sign In" %}</button>
+  <a  class="btn btn-outline-dark" href="{% url 'account_reset_password' %}">{% trans "Forgot Password ?" %}</a>  
+
+</form>
+    {% load account socialaccount %}
+
+    {% get_providers as socialaccount_providers %}
+    <ul class="social_providers_list">
+    {% for provider in socialaccount_providers %}
+        <a title="{{provider.name}}" class="btn btn-outline-dark" 
+         href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}"><i class="fa fa-{{provider.name}}" id="social_icon"></i>{{provider.name}}</a>
+    {% endfor %}
+    </ul>
+</div> {% endcomment %}
+
+<section class="vh-100" style="background-color: #9A616D;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img
+              src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-login-form/img1.jpg"
+                alt="login form"
+                class="img-fluid" style="border-radius: 1rem 0 0 1rem;"
+              />
+            </div>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+                  {% block messages %}
+                  {% if messages %}
+                  <div>
+                      <ul>
+                      {% for message in messages %}
+                      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                              <strong>{{message}}</strong>
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                      </div>
+                      {% endfor %}
+                      </ul>
+                  </div>
+                {% endif %}
+              {% endblock %}
+                <h3 class="h3" id="head_banner">{% trans "Sign In" %}</h3>
+                <form class="container-fluid text-center" style="width: 23rem;" id="login_form" method="POST" action="{% url 'account_login' %}">
+                  {% csrf_token %}
+                  
+                  {{ form.as_p }}
+                
+                  {% if redirect_field_value %}
+                  
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                  
+                  {% endif %}
+                  
+                  <button  class="btn btn-outline-primary btn-sm " type="submit">{% trans "Sign In" %}</button>
+                  <a  class="btn btn-outline-dark btn-sm" href="{% url 'account_reset_password' %}">{% trans "Forgot Password ?" %}</a>
+                </form>
+
+                <div class="row my-2">
+                  <div class="col"><hr></div>
+                  <div class="col-auto">OU</div>
+                  <div class="col"><hr></div>
+                </div>
+
+                <span class="text-center">
+                  {% load account socialaccount %}
+                      {% get_providers as socialaccount_providers %}
+                      <div class=" row ">
+                        {% for provider in socialaccount_providers %}
+                        <a title="{{provider.name}}" class="btn btn-outline-dark btn-sm social_btn" href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
+                          <i class="fa fa-{{provider.name}}" id="social_icon"></i>{{provider.name}}</a>
+                        {% endfor %}
+                      </div>
+
+                  <p class="mt-5"><small> <a href="#">Politique de Confidentialité</a></small> ou <small> <a href="#">Informations légales</a></p>
+                </span>     
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,129 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+{% block head_links %} 
+
+<title>Signup</title>
+
+{% endblock %}
+
+{% block content %}
+{% comment %}
+<div class="container-fluid">
+
+ {% block messages %}
+    {% if messages %}
+    <div>
+        <ul>
+        {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>{{message}}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+  {% endblock %} 
+  
+
+<h3 class="h3" id="head_banner">{% trans "Sign Up" %}</h3>
+
+<p class="exist_account_info">{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+
+<form class="container-fluid text-center" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+
+  {{ form.as_p }}
+
+  {% if redirect_field_value %}
+
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  
+  {% endif %}
+  
+  <button class="btn btn-outline-primary btn-lg" type="submit">{% trans "Sign Up" %}</button>
+</form>
+
+</div>
+{% endcomment %}
+
+<section class="vh-100" style="background-color: #9A616D;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="row g-0">
+            <div class="col-12 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+
+                <!-- Message and Alert -->
+                {% block messages %}
+                {% if messages %}
+                <div>
+                    <ul>
+                    {% for message in messages %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>{{message}}</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>
+                    {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+              {% endblock %}
+
+              <h3 class="h3" id="head_banner">{% trans "Sign Up" %}</h3>
+
+              <p class="exist_account_info"><small>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</small></p>
+              
+                <form class="container" style="" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                  {% csrf_token %}
+                  <div class="row mt-3 mb-3">
+                      <div class="col-2"> </div>
+                      <div class="col-4">
+                        {{ form.username|as_crispy_field }}
+                      </div>
+                      <div class="col-4">
+                        {{ form.email|as_crispy_field }}
+                      </div>
+                      <div class="col-2"> </div>
+                    </div>
+                  <div class="row mt-3">
+                    <div class="col-2"> </div>
+                    <div class="col-4">
+                      {{ form.password1|as_crispy_field }}
+                    </div>
+                    <div class="col-4">
+                      {{ form.password2|as_crispy_field }}
+                    </div>
+                    <div class="col-2"> </div>
+                  </div>
+                  
+                  {% if redirect_field_value %}
+                
+                  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                  
+                  {% endif %}
+                  <div class="row">
+                    <div class="col text-center">
+                      <button class="btn btn-outline-primary btn-lg" type="submit">{% trans "Sign Up" %}</button>
+                    </div>
+                  </div>
+                </form>
+                </span>     
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -23,6 +23,7 @@ urlpatterns = [
     path('p/', include('partenaire.urls', namespace='partenaire')),
     path('', include('core.urls', namespace='Core')),
     path('dashboard/', include('dashboard.urls', namespace='Dashboard')),
+    path('accounts/', include('allauth.urls')), # allauth package needs
 ]
 
 urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
