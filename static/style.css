@@ -1,5 +1,6 @@
 /*Fichier de Style css Custom*/
 
+
 .title{
 	font-size: 1rem;
 }
@@ -90,3 +91,20 @@ small{
     color: #6c757d;
 }
 
+/* Card Section */
+.card-usr{
+    position: absolute;
+    right: 16px;
+    top: 221px;
+    bottom: 0;
+    /* left: 16px; */
+}
+
+/* Donor section */
+
+.owl-prev{
+  background-color: grey;
+}
+.owl-next{
+  background-color: grey;
+}

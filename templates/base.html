@@ -1,57 +1,138 @@
-{%load static%}
-<!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'index.css' %}">
-  <link rel="stylesheet" href="{% static 'style.css' %}">
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-  <!-- jquery -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" defer></script>
-  <title>{% block title %}{% endblock title %} | Crowd Christian Donnors</title>
-</head>
-<body style="overflow-y: scroll">
+ {% load static %}
 
-  <header>
-      <!-- Navigation Menue -->
-      {%include 'navbar.html'%}
-  </header>
+    <link rel="stylesheet" href="{% static 'account/Css/Custom-Account-Styles.css' %}" type = "text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<div class="row">
-   <div class="space-2 bg-light">
-
-      {% block content%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <!-- Owl Css -->
+    <link rel="stylesheet" href="https://cdn.boomcdn.com/libs/owl-carousel/2.3.4/assets/owl.carousel.min.css" integrity="sha384-kcNNzf7wI8//ZkNUaDd5JwxLoFaBgkj9Z4O4NwtuX9Lkmsz0HoITOxJsGkYxDuyG" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.boomcdn.com/libs/owl-carousel/2.3.4/assets/owl.theme.default.min.css" integrity="sha384-8/AzSKHReNfZT4HGFTyRyJ1jXhhx/ZMnmX08Cy6TeaKWj0Vzho0AabG06C8mh02i" crossorigin="anonymous">
     
-        {% block messages %}
-        {% endblock %}
-      
-      {% endblock %}
-      
-      {% block content_extra %}
-      {% endblock %}
-      
-      {% block extra_body %}
-      {% endblock %}
-   </div>
-</div>
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <!-- Font Awesome Icons -->
 
-   
-   <!-- Divider-->
-   <div class="container divider">
-      <div class="row">
-        
-      </div>
+{% block head_links %}
+{% endblock %}
+
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Container wrapper --> 
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+      <a class="navbar-brand mt-2 mt-lg-0" href="/">
+        <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" height="15" alt="" loading="lazy" />
+      </a>
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Comment ça marche</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Démarrer une Campagne</a>
+        </li>
+        {% if request.user.is_authenticated == True %}
+          <li class="nav-item">
+            <a class="nav-link" href="#">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Historique</a>
+          </li>
+        {% endif %}
+      </ul>
+      <!-- Left links -->
     </div>
-  <footer>
-      <div class="text-center" style="background-color:white;">© Copyright 2021 Hack|<span style="color: orange;"> Lome</span></div>
-  </footer>
-  <script src="{% static 'index.js' %}"></script>
+    <!-- Collapsible wrapper -->
+
+    <!-- Right elements -->
+    {% if request.user.is_authenticated == True %}
+      <div class="dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src="https://mdbootstrap.com/img/new/avatars/2.jpg" class="rounded-circle" height="25" alt="" loading="lazy"/>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/accounts/profile">Profile</a>
+          <a class="dropdown-item" href="#">Settings</a>
+          <a class="dropdown-item" href="/accounts/logout">Logout</a>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if request.user.is_authenticated != True %}
+      <div class="dropdown">
+        <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Login/Register
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/accounts/login">Login</a>
+          <a class="dropdown-item" href="/accounts/signup">Register</a>
+        </div>
+      </div>
+    {% endif %}
+    <!-- Right elements -->
+</nav>
+<!--Navbar -->
+
+  {% block content%}
+  
+    {% block messages %}
+      {% endblock %}
+  
+  {% endblock %}
+  
+  {% block content_extra %}
+  {% endblock %}
+  
+  {% block extra_body %}
+  {% endblock %}
+
+  <!-- Divider-->
+  <div class="container divider" style="padding-top: 150px;">
+    <div class="row">
+    
+    </div>
+  </div>
+
+<footer>
+    <div class="text-center" style="background-color:white;">© Copyright 2021 Hack|<span style="color: orange;"> Lome</span></div>
+</footer>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<!-- Owl JavaScript -->
+<script src="https://cdn.boomcdn.com/libs/owl-carousel/2.3.4/owl.carousel.min.js" integrity="sha384-l/y5WJTphApmSlx76Ev6k4G3zxu/+19CVvn9OTKI7gs4Yu5Hm8mjpdtdr5oyhnNo" crossorigin="anonymous"></script>
+<!-- Custom JavaScript -->
+<script src="{% static 'core/home.js' %}"></script>
+<script src="{% static 'index.js' %}"></script>
+
 </body>
 </html>

@@ -15,11 +15,11 @@
 
 {% if BesoinQueryLatest %}
 <div class="container-fluid">
-    <div class="row">
-      <div class="space-2 bg-light">
+    <div class="row" style="padding: 70px;">
+      <div class="space-2">
           <div class="container">
-              <div class="row mb-5 text-center text-uppercase">
-                  <h2>Derniers Besoins inscrits</h2>
+              <div class=" mt-5 mb-5 text-left text-uppercase">
+                  <h6>Derniers Projets inscrits</h6>
               </div>
              <div class="row d-flex">
                 {% for besoin in BesoinQueryLatest %}
@@ -35,10 +35,11 @@
                         </div>
                         <!-- Card content -->
                         <div class="card-body border rounded-bottom">
-                            <a href="{% url 'core:detail' besoin.pk %}" class="card-text small mb-2 d-block">{{besoin.get_type_display}}</a>
-                            <!-- Title --><a href="{% url 'core:detail' besoin.pk %}" class="h5 card-title">{{besoin.titre}}</a>
+                            <a href="{% url 'core:detail' besoin.pk %}" class="card-usr" > <img src="{% static 'images/avatar.png' %}" class="rounded-circle" height="30px" width="30px" /> </a>
+                            <a href="{% url 'core:detail' besoin.pk %}" class="card-text small mb-2 d-block" style ="color: #007bff;">{{besoin.get_type_display}}</a>
+                            <!-- Title --><a href="{% url 'core:detail' besoin.pk %}" class="h5 card-title">{{besoin.titre | truncatechars:30}}</a>
                             <!-- Description -->
-                            <p>{{besoin.resume | truncatechars:200}}</p>
+                            <p>{{besoin.resume | truncatechars:80}}</p>
                             <hr>
                             <ul class="list-unstyled d-flex justify-content-between mb-3 text-center small">
                                 <li class="pledged">
@@ -55,7 +56,7 @@
                                 </li>
                             </ul>
                             <div class="progress mb-2">
-                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="55" aria-valuemin="91" aria-valuemax="100" style="width:62%">62%</div>
+                                <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="55" aria-valuemin="91" aria-valuemax="100" style="width:62%">62%</div>
                             </div>
                             <!-- end: progress bard -->
                         </div>
@@ -78,7 +79,7 @@
 
 
 <!-- Section des Partenaire -->
-{% if  PartenaireQueryLatest%}
+{% comment %} {% if  PartenaireQueryLatest%}
 <div class="row">
 <div class="space-2 bg-light">
         <div class="container">
@@ -103,16 +104,16 @@
 </div>
 {% else %}
 <h3>Oups, Aucun partner à afficher pour le moment...</h3>
-{% endif %}
+{% endif %} {% endcomment %}
 
 
-<!-- Section des Donateurs -->
+<!-- Section des Donateurs 0 -->
 {% if DonQueryLatest %}
-<div class="row">
-    <div class="space-2 bg-light">
+<div class="row" style="padding: 70px;">
+    <div class="space-2">
         <div class="container">
-            <div class="row mb-5 text-left text-uppercase">
-                <h4 class="">Derniers Donateurs</h4>
+            <div class="mt-5 mb-5 text-left text-uppercase">
+                <h6 class="">Derniers Donateurs</h6>
             </div>
             <div class="row d-flex">
 
@@ -133,11 +134,37 @@
    <h3>Oups, Aucun Dons à afficher pour le moment...</h3>
 {% endif %}
 
+<!-- Section des Donateurs 1 -->
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="heading-section mb-5">Carousel #03</h2>
+            </div>
+            <div class="col-md-12">
+                <div class="featured-carousel owl-carousel">
+                    {% for i in '0123456789'|make_list%}
+                    <div class="item">
+                        <div class="work">
+                            <div class="img d-flex align-items-end justify-content-center" style="background-image: url(static/images/work-1.jpg);">
+                                <div class="text w-100">
+                                    <span class="cat">Web Design</span>
+                                    <h3><a href="#">Working Spaces for Startups Freelancer</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
- <!-- section CTA -->
+<!-- section CTA -->
 
- <section class="join-us mb-5">
+ {% comment %} <section class="join-us mb-5">
     <div class="container">
         <div class="row mb-5 text-center text-uppercase">
             <h2>Rejoignez-Nous</h2>
@@ -166,6 +193,6 @@
             </div>
         </div>
     </div>
-</section>
+</section> {% endcomment %}
 
 {% endblock content %}

@@ -1,7 +1,9 @@
 {% extends "account/base.html" %}
-
-{% load i18n %}
 {% load static %}
+{% load i18n %}
+
+{% load crispy_forms_tags %}
+
 
 {% block head_links %} 
 
@@ -60,14 +62,14 @@
 </div> {% endcomment %}
 
 <section class="vh-100" style="background-color: #9A616D;">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center align-items-center">
       <div class="col col-xl-10">
         <div class="card" style="border-radius: 1rem;">
           <div class="row g-0">
             <div class="col-md-6 col-lg-5 d-none d-md-block">
               <img
-              src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-login-form/img1.jpg"
+              src="{% static 'images/b_login_.jpg'%}"
                 alt="login form"
                 class="img-fluid" style="border-radius: 1rem 0 0 1rem;"
               />
@@ -94,7 +96,24 @@
                 <form class="container-fluid text-center" style="width: 23rem;" id="login_form" method="POST" action="{% url 'account_login' %}">
                   {% csrf_token %}
                   
-                  {{ form.as_p }}
+                  {% comment %} {{ form.as_p }} {% endcomment %}
+                  <div class="container">
+                    <div class="row">
+                      <div class="col">
+                        {{ form.login|as_crispy_field }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        {{ form.password|as_crispy_field }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col mt-4 mb-3">
+                        {{ form.remember|as_crispy_field }}
+                      </div>
+                    </div>
+                  </div>
                 
                   {% if redirect_field_value %}
                   
@@ -122,7 +141,7 @@
                         {% endfor %}
                       </div>
 
-                  <p class="mt-5"><small> <a href="#">Politique de Confidentialité</a></small> ou <small> <a href="#">Informations légales</a></p>
+                  <p class="mt-4 mb-0"><small> <a href="#">Politique de Confidentialité</a></small> ou <small> <a href="#">Informations légales</a></p>
                 </span>     
               </div>
             </div>
